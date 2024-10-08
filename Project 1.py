@@ -46,5 +46,5 @@ t_test = strat_df_test['Step']
 f=df.corr()
 print(np.abs(f))
 sns.heatmap(f) ##Not working
-#plt.show()
+plt.show()
 
