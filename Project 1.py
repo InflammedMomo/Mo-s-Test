@@ -2,11 +2,10 @@ import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sns
-from bokeh.palettes import RdBu3
 from sklearn.model_selection import StratifiedShuffleSplit
 
 df = pd.read_csv("Project_1_Data.csv")
-print(df.info())
+#print(df.info())
 # Question 1
 X=df.loc[:,"X"]
 Y=df.loc[:,"Y"]
@@ -46,6 +45,6 @@ t_test = strat_df_test['Step']
 
 f=df.corr()
 print(np.abs(f))
-sns.heatmap(f)
+sns.heatmap(f) ##Not working
 #plt.show()
 
