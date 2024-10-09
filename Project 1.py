@@ -3,6 +3,12 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sns
 from sklearn.model_selection import StratifiedShuffleSplit
+from sklearn.linear_model import LinearRegression
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.metrics import mean_absolute_error
+from sklearn.model_selection import GridSearchCV
+from sklearn.svm import SVR
+from sklearn.tree import DecisionTreeRegressor
 
 df = pd.read_csv("Project_1_Data.csv")
 #print(df.info())
@@ -45,6 +51,40 @@ t_test = strat_df_test['Step']
 
 f=df.corr()
 print(np.abs(f))
-sns.heatmap(f) ##Not working
-plt.show()
+#sns.heatmap(f) ##Not working
+#plt.show()
 
+#Question 3
+#Linear Regression
+linear_reg = LinearRegression()
+param_grid_lr = {}  # No hyperparameters to tune for plain linear regression, but you still apply GridSearchCV.
+grid_search_lr = GridSearchCV(linear_reg, param_grid_lr, cv=5, scoring='neg_mean_absolute_error', n_jobs=-1)
+grid_search_lr.fit(f_train, t_train)
+best_model_lr = grid_search_lr.best_estimator_
+print("Best Linear Regression Model:", best_model_lr)
+
+# Decision Tree
+decision_tree = DecisionTreeRegressor(random_state=42)
+param_grid_dt = {
+    'max_depth': [None, 10, 20, 30],
+    'min_samples_split': [2, 5, 10],
+    'min_samples_leaf': [1, 2, 4]
+}
+grid_search_dt = GridSearchCV(decision_tree, param_grid_dt, cv=5, scoring='neg_mean_absolute_error', n_jobs=-1)
+grid_search_dt.fit(f_train, t_train)
+best_model_dt = grid_search_dt.best_estimator_
+print("Best Decision Tree Model:", best_model_dt)
+
+# Random Forest
+random_forest = RandomForestRegressor(random_state=42)
+param_grid_rf = {
+    'n_estimators': [10, 30, 50],
+    'max_depth': [None, 10, 20, 30],
+    'min_samples_split': [2, 5, 10],
+    'min_samples_leaf': [1, 2, 4],
+    'max_features': ['sqrt', 'log2']
+}
+grid_search_rf = GridSearchCV(random_forest, param_grid_rf, cv=5, scoring='neg_mean_absolute_error', n_jobs=-1)
+grid_search_rf.fit(f_train, t_train)
+best_model_rf = grid_search_rf.best_estimator_
+print("Best Random Forest Model:", best_model_rf)
