@@ -6,7 +6,7 @@ from sklearn.model_selection import StratifiedShuffleSplit
 from sklearn.linear_model import LinearRegression
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import mean_absolute_error
-from sklearn.model_selection import GridSearchCV
+from sklearn.model_selection import GridSearchCV,RandomizedSearchCV
 from sklearn.svm import SVR
 from sklearn.tree import DecisionTreeRegressor
 
@@ -18,6 +18,8 @@ Y=df.loc[:,"Y"]
 Z=df.loc[:,"Z"]
 step=df.loc[:,"Step"]
 #print(step)
+#sns.heatmap(np.abs(df.corr()))
+#plt.show()
 
 ax = plt.figure().add_subplot(projection='3d')
 p=ax.scatter(X, Y, Z, c=step)
@@ -29,6 +31,7 @@ ax.set(
 )
 plt.colorbar(p)
 #plt.show() #rememeber to remove this
+plt.clf()
 print("hellow")
 
 # Question 2
@@ -49,10 +52,10 @@ f_test = strat_df_test.drop("Step", axis = 1)
 t_test = strat_df_test['Step']
 #print(f_train)
 
-f=df.corr()
-print(np.abs(f))
-#sns.heatmap(f) ##Not working
-#plt.show()
+f = np.abs(strat_df_train.corr())
+print(f)
+sns.heatmap(f, annot=True) ## Not working
+plt.show()
 
 #Question 3
 #Linear Regression
@@ -84,7 +87,11 @@ param_grid_rf = {
     'min_samples_leaf': [1, 2, 4],
     'max_features': ['sqrt', 'log2']
 }
-grid_search_rf = GridSearchCV(random_forest, param_grid_rf, cv=5, scoring='neg_mean_absolute_error', n_jobs=-1)
+grid_search_rf = RandomizedSearchCV(random_forest, param_grid_rf, cv=5, scoring='neg_mean_absolute_error', n_jobs=-1)
 grid_search_rf.fit(f_train, t_train)
 best_model_rf = grid_search_rf.best_estimator_
 print("Best Random Forest Model:", best_model_rf)
+
+# Random Search
+random_search = RandomizedSearchCV(random_state=42)
+
