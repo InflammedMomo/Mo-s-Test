@@ -32,7 +32,6 @@ ax.set(
 plt.colorbar(p)
 #plt.show() #rememeber to remove this
 plt.clf()
-print("hellow")
 
 # Question 2
 
@@ -42,20 +41,17 @@ splitter = StratifiedShuffleSplit(n_splits = 1,
 for train_index, test_index in splitter.split(df, df["Step"]):
     strat_df_train = df.loc[train_index].reset_index(drop=True)
     strat_df_test = df.loc[test_index].reset_index(drop=True)
-#strat_df_train = strat_df_train.drop(columns=["Step"], axis = 1)
-#strat_df_test = strat_df_test.drop(columns=["Step"], axis = 1)
 #print(strat_df_train)
 
 f_train = strat_df_train.drop("Step", axis = 1)
 t_train = strat_df_train['Step']
 f_test = strat_df_test.drop("Step", axis = 1)
 t_test = strat_df_test['Step']
-#print(f_train)
 
 f = np.abs(strat_df_train.corr())
 print(f)
-sns.heatmap(f, annot=True) ## Not working
-plt.show()
+sns.heatmap(f, annot=True)
+#plt.show()
 
 #Question 3
 #Linear Regression
@@ -92,6 +88,4 @@ grid_search_rf.fit(f_train, t_train)
 best_model_rf = grid_search_rf.best_estimator_
 print("Best Random Forest Model:", best_model_rf)
 
-# Random Search
-random_search = RandomizedSearchCV(random_state=42)
 
