@@ -61,7 +61,6 @@ param_grid_lr = {}
 grid_search_lr = GridSearchCV(linear_reg, param_grid_lr, cv=5, scoring='neg_mean_absolute_error', n_jobs=-1)
 grid_search_lr.fit(f_train, t_train)
 best_model_lr = grid_search_lr.best_estimator_
-print("Best Linear Regression Model:", best_model_lr)
 
 # Decision Tree
 decision_tree = DecisionTreeRegressor(random_state=42)
@@ -73,7 +72,6 @@ param_grid_dt = {
 grid_search_dt = GridSearchCV(decision_tree, param_grid_dt, cv=5, scoring='neg_mean_absolute_error', n_jobs=-1)
 grid_search_dt.fit(f_train, t_train)
 best_model_dt = grid_search_dt.best_estimator_
-print("Best Decision Tree Model:", best_model_dt)
 
 # Random Forest
 random_forest = RandomForestRegressor(random_state=64)
@@ -87,7 +85,6 @@ param_grid_rf = {
 grid_search_rf = RandomizedSearchCV(random_forest, param_grid_rf, cv=5, scoring='neg_mean_absolute_error', n_jobs=-1)
 grid_search_rf.fit(f_train, t_train)
 best_model_rf = grid_search_rf.best_estimator_
-print("Best Random Forest Model:", best_model_rf)
 
 # Question 4 + 5
 
@@ -97,10 +94,10 @@ f1_lr = sklearn.metrics.f1_score(t_test_pred_lr, t_test, average=None)
 p_s_lr = sklearn.metrics.precision_score(t_test_pred_lr, t_test, average=None)
 a_s_lr = sklearn.metrics.accuracy_score(t_test_pred_lr, t_test)
 con_mat_lr = sklearn.metrics.confusion_matrix(t_test_pred_lr, t_test)
-print(f1_lr)
-print(p_s_lr)
+#print(f1_lr)
+#print(p_s_lr)
 print(a_s_lr)
-print(con_mat_lr)
+#print(con_mat_lr)
 
 # Decision Tree
 t_test_pred_dt = np.round(best_model_dt.predict(f_test))
@@ -108,19 +105,19 @@ f1_dt = sklearn.metrics.f1_score(t_test_pred_dt, t_test, average=None)
 p_s_dt = sklearn.metrics.precision_score(t_test_pred_dt, t_test, average=None)
 a_s_dt = sklearn.metrics.accuracy_score(t_test_pred_dt, t_test)
 con_mat_dt = sklearn.metrics.confusion_matrix(t_test_pred_dt, t_test)
-print(f1_dt)
-print(p_s_dt)
+#print(f1_dt)
+#print(p_s_dt)
 print(a_s_dt)
-print(con_mat_dt)
+#print(con_mat_dt)
 
 # Random Forest
 t_test_pred_rf = np.round(best_model_rf.predict(f_test))
 f1_rf = sklearn.metrics.f1_score(t_test_pred_rf, t_test, average=None)
 p_s_rf=sklearn.metrics.precision_score(t_test_pred_rf, t_test, average=None)
 a_s_rf=sklearn.metrics.accuracy_score(t_test_pred_rf, t_test)
-con_mat_rf = sklearn.metrics.confusion_matrix(t_test_pred_rf, t_test)
-print(f1_rf)
-print(p_s_rf)
+con_mat_rf = sklearn.metrics.confusion_matrix(t_test_pred_rf, t_test,normalize=None)
+#print(f1_rf)
+#print(p_s_rf)
 print(a_s_rf)
 print(con_mat_rf)
 
@@ -133,10 +130,10 @@ f1_stack = sklearn.metrics.f1_score(t_test_pred_stack, t_test, average=None)
 p_s_stack=sklearn.metrics.precision_score(t_test_pred_stack, t_test, average=None)
 a_s_stack=sklearn.metrics.accuracy_score(t_test_pred_stack, t_test)
 con_mat_stack = sklearn.metrics.confusion_matrix(t_test_pred_stack, t_test)
-print(f1_stack)
-print(p_s_stack)
+#print(f1_stack)
+#print(p_s_stack)
 print(a_s_stack)
-print(con_mat_stack)
+#print(con_mat_stack)
 
 # Question 7
 rand_set1= [[9.375, 3.0625,1.51],
