@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sns
 import sklearn.metrics
+from docutils.nodes import label
 from sklearn.model_selection import StratifiedShuffleSplit
 from sklearn.linear_model import LinearRegression, LogisticRegression
 from sklearn.ensemble import RandomForestRegressor, StackingClassifier
@@ -50,9 +51,10 @@ f_test = strat_df_test.drop("Step", axis = 1)
 t_test = strat_df_test['Step']
 
 f = np.abs(strat_df_train.corr())
-print(f)
+#print(f)
 sns.heatmap(f, annot=True)
-plt.show()
+#plt.show()
+plt.clf()
 
 #Question 3
 
@@ -128,6 +130,11 @@ print('F1 Score:', f1_dt)
 print('Precision:', p_s_dt)
 print('Accuracy:',a_s_dt)
 #print(con_mat_dt)
+sns.heatmap(con_mat_dt,annot=True)
+plt.xlabel('True')
+plt.ylabel('Predcited')
+plt.show()
+plt.clf()
 
 # Random Forest
 t_test_pred_rf = np.round(best_model_rf.predict(f_test))
@@ -148,14 +155,14 @@ p_s_rf_rand = sklearn.metrics.precision_score(t_test_pred_rf_rand, t_test, avera
 a_s_rf_rand = sklearn.metrics.accuracy_score(t_test_pred_rf_rand, t_test)
 con_mat_rf_rand = sklearn.metrics.confusion_matrix(t_test_pred_rf_rand, t_test,normalize=None)
 print('Random Forest & RandomCV')
-print('F1 Score:', f1_rf)
-print('Precision:', p_s_rf)
+print('F1 Score:', f1_rf_rand)
+print('Precision:', p_s_rf_rand)
 print('Accuracy:',a_s_rf_rand)
 #print(con_mat_rf_rand)
 
 # Question 6
-est = [('dt',decision_tree), ('rf_rand',random_forest)]
-stack = StackingClassifier(estimators = est, final_estimator= LogisticRegression(max_iter=1000))
+est = [('dt',decision_tree), ('rf',random_forest)]
+stack = StackingClassifier(estimators = est, final_estimator= LogisticRegression(max_iter=2000))
 stack.fit(f_train,t_train)
 t_test_pred_stack = stack.predict(f_test)
 f1_stack = sklearn.metrics.f1_score(t_test_pred_stack, t_test, average='macro')
@@ -167,6 +174,11 @@ print('F1 Score:', f1_stack)
 print('Precision:', p_s_stack)
 print('Accuracy:', a_s_stack)
 #print(con_mat_stack)
+sns.heatmap(con_mat_stack,annot=True)
+plt.xlabel('True')
+plt.ylabel('Predcited')
+plt.show()
+plt.clf()
 
 # Question 7
 rand_set1= [[9.375, 3.0625,1.51],
