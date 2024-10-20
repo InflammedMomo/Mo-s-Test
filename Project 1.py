@@ -3,14 +3,11 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sns
 import sklearn.metrics
-from docutils.nodes import label
 from sklearn.model_selection import StratifiedShuffleSplit
 from sklearn.linear_model import LinearRegression, LogisticRegression
 from sklearn.ensemble import RandomForestRegressor, StackingClassifier
 from sklearn.model_selection import GridSearchCV, RandomizedSearchCV
 from sklearn.tree import DecisionTreeRegressor
-from sklearn.preprocessing import PolynomialFeatures
-from sklearn.metrics import f1_score, accuracy_score, precision_score, confusion_matrix
 import joblib as job
 
 df = pd.read_csv("Project_1_Data.csv")
@@ -133,7 +130,7 @@ print('Accuracy:',a_s_dt)
 sns.heatmap(con_mat_dt,annot=True)
 plt.xlabel('True')
 plt.ylabel('Predcited')
-plt.show()
+#plt.show()
 plt.clf()
 
 # Random Forest
@@ -177,7 +174,7 @@ print('Accuracy:', a_s_stack)
 sns.heatmap(con_mat_stack,annot=True)
 plt.xlabel('True')
 plt.ylabel('Predcited')
-plt.show()
+#plt.show()
 plt.clf()
 
 # Question 7
