@@ -8,7 +8,7 @@ n=500
 test_datagen = ImageDataGenerator(rescale=1/255)
 test_generator = test_datagen.flow_from_directory(
     'Project 2 Data/Data/test',
-    color_mode='rgb',
+    color_mode='grayscale',
     target_size=(n, n),
     batch_size=32,
     class_mode='categorical',
