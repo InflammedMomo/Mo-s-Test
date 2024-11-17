@@ -4,8 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1d28d104-b2e0-4d78-9627-892a20382b24" name="Changes" comment="11/5/2024">
-      <change afterPath="$PROJECT_DIR$/logs/Project 2 Step 5.py" afterDir="false" />
+    <list default="true" id="1d28d104-b2e0-4d78-9627-892a20382b24" name="Changes" comment="11/15/2024">
+      <change afterPath="$PROJECT_DIR$/Project 2 Test.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Project 2.py" beforeDir="false" afterPath="$PROJECT_DIR$/Project 2.py" afterDir="false" />
     </list>
@@ -54,6 +54,7 @@
   &quot;keyToString&quot;: {
     &quot;Python.Project 1 (2).executor&quot;: &quot;Run&quot;,
     &quot;Python.Project 1.executor&quot;: &quot;Run&quot;,
+    &quot;Python.Project 2 Test.executor&quot;: &quot;Run&quot;,
     &quot;Python.Project 2.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
@@ -65,7 +66,7 @@
     ]
   }
 }</component>
-  <component name="RunManager" selected="Python.Project 2">
+  <component name="RunManager">
     <configuration name="Project 1" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Mo-s-Test" />
       <option name="ENV_FILES" value="" />
@@ -222,7 +223,15 @@
       <option name="project" value="LOCAL" />
       <updated>1730842634449</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="11/15/2024">
+      <option name="closed" value="true" />
+      <created>1731708103125</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1731708103125</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -234,6 +243,7 @@
     <MESSAGE value="10/20/2024" />
     <MESSAGE value="11/4/2024" />
     <MESSAGE value="11/5/2024" />
-    <option name="LAST_COMMIT_MESSAGE" value="11/5/2024" />
+    <MESSAGE value="11/15/2024" />
+    <option name="LAST_COMMIT_MESSAGE" value="11/15/2024" />
   </component>
 </project>
