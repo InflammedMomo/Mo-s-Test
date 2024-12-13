@@ -2,6 +2,7 @@ import cv2
 import numpy as np
 from ultralytics import YOLO
 import os
+
 os.environ["KMP_DUPLICATE_LIB_OK"]="TRUE"
 image = cv2.imread('C:\\Users\\super\\Documents\\GitHub\\Mo-s-Test\\Project 3 Data\\motherboard_image.JPEG',1)
 
@@ -39,15 +40,36 @@ cv2.imwrite('board_extracted.JPEG',board_extracted)
 
 
 # Step 2
-import torch
 '''
-print(torch.cuda.is_available())
-print(torch.cuda.device_count())
-print(torch.cuda.current_device())
-print(torch.cuda.device(0))
-print(torch.cuda.get_device_name(0))'''
-
 model = YOLO('yolov8n.pt')
 model.train(data='C:\\Users\\super\\Documents\\GitHub\\Mo-s-Test\\Project 3 Data\\data\\data.yaml', epochs=150,
-            imgsz=1000, batch=4,name='Model_150Epoch')
+            imgsz=900, batch=2,device=0 ,name='Model_150Epoch')
+'''
 
+
+#Step 3
+from PIL import Image
+model =YOLO('C:\\Users\\super\\Documents\\GitHub\\Mo-s-Test\\Project 3 Data\\best.pt')
+
+results1 = model('C:\\Users\\super\\Documents\\GitHub\\Mo-s-Test\\Project 3 Data\\data\\evaluation\\ardmega.jpg')
+results2 = model('C:\\Users\\super\\Documents\\GitHub\\Mo-s-Test\\Project 3 Data\\data\\evaluation\\arduno.jpg')
+results3 = model('C:\\Users\\super\\Documents\\GitHub\\Mo-s-Test\\Project 3 Data\\data\\evaluation\\rasppi.jpg')
+# Evaluate the model
+
+for r1 in results1:
+    im_array = r1.plot()
+    im = Image.fromarray(im_array[..., ::-1])
+    im.show()
+    im.save('ardmega_eval.jpg')
+
+for r2 in results2:
+    im_array = r2.plot()
+    im = Image.fromarray(im_array[..., ::-1])
+    im.show()
+    im.save('arduno_eval.jpg')
+
+for r3 in results3:
+    im_array = r3.plot()
+    im = Image.fromarray(im_array[..., ::-1])
+    im.show()
+    im.save('rasppi_eval.jpg')
